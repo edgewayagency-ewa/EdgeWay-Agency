@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem('edgeway-theme');
     if (savedTheme) {
         body.setAttribute('data-theme', savedTheme);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        body.setAttribute('data-theme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
     }
 
     if (themeBtn) {
@@ -153,14 +153,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Services Grid
     gsap.fromTo('.service-card', {
         opacity: 0,
-        y: 40
+        x: -60
     }, {
         scrollTrigger: {
             trigger: '#services',
-            start: 'top 70%'
+            start: 'top 70%',
+            onEnter: () => {
+                const cards = document.querySelectorAll('.service-card');
+                cards.forEach((card, i) => {
+                    setTimeout(() => {
+                        card.classList.add('in-view');
+                    }, i * 150);
+                });
+            }
         },
         opacity: 1,
-        y: 0,
+        x: 0,
         duration: 0.8,
         stagger: 0.15,
         ease: 'power3.out'
