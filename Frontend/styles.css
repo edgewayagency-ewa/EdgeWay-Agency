@@ -456,10 +456,12 @@ h3 {
 /* --- Section 2: Services / Capabilities --- */
 .services-grid {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 .service-card {
-  flex: 1;
+  flex: 1 1 calc(33.333% - 2rem);
+  min-width: 300px;
   padding: 3rem 2.5rem;
   border-radius: 8px;
   position: relative;
